@@ -58,8 +58,8 @@ const sensors=s=>{
 }
 // big card
 bigCard.innerHTML=`
-<div class="card flex-md-row  align-items-center justify-content-around mx-auto my-5" style="width: 32rem;">
-  <div class= "mx-4 d-flex flex-column justify-content-center" >
+<div class="card flex-md-row  align-items-center justify-content-around  mx-auto my-5 w-75  ">
+  <div style="width:35%" class= "mx-1 d-flex flex-column justify-content-center" >
   <img src="${n.data.image}" class="card-img-top w-75 my-4 mx-auto" alt="...">
   <h4 class="text-center">${n.data.name}</h4>
   <h5 class="text-center">${n.data.releaseDate? n.data.releaseDate:'soon'}</h5>
@@ -100,7 +100,7 @@ bigCard.innerHTML=`
 
     <tr>
     <td>Sensors:</td>
-    <td class="text-wrap">${sensors(n.data.mainFeatures.sensors)}</td>
+    <td class="text-wrap">${sensors(n.data.mainFeatures?.sensors)}</td>
     </tr>
 
     
