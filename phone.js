@@ -9,11 +9,11 @@ const search=()=>{
     .then(data=>displayCard(data))
 }
 const displayCard=data=>{
-    const gridContainer=document.getElementById('grid-container')
-   
+    
+    const gridCild=document.getElementById('grid-child')
+    gridCild.textContent=''
     data.data.slice(0,20).forEach(n => {
-        const gridCild=document.getElementById('grid-child')
-        console.log(n)
+        
         const div=document.createElement('div')
        div.innerHTML=`
        <div class="col">
@@ -40,4 +40,13 @@ const details=data=>{
 }
 const displayDetail=n=>{
 console.log(n)
+const bigCard=document.getElementById('big-card')
+bigCard.innerHTML=`
+<div class="card flex-md-row  align-items-center justify-content-around mx-auto my-5" style="width: 32rem;">
+  <img src="${n.data.image}" class="card-img-top w-75 mx-4 my-4" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+`
 }
