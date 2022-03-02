@@ -24,3 +24,7 @@ body{
     color: #1b4332;
 
 }
+/* spinner */
+#spinner{
+    display: none;
+}

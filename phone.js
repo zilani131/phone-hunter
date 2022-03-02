@@ -15,6 +15,7 @@ const search=()=>{
     const searchText=searchField.value
     toggle('none',"alert-not-found")
     toggle('none','alert')
+    toggle('block','spinner')
    
     bigCard.textContent=''
    
@@ -23,6 +24,8 @@ const search=()=>{
     {
         toggle('block','alert')
         toggle('none','grid-container')
+        toggle('none','spinner')
+
         
     }
   
@@ -37,18 +40,20 @@ const search=()=>{
 }
 // display card
 const displayCard=data=>{
-      console.log(data)
+    //   console.log(data)
       if(data.status==false){
         toggle('block',"alert-not-found")
         toggle('none','grid-container')
+        toggle('none','spinner')
     }
     else{toggle('block',"grid-container")
+    toggle('none','spinner')
         
         const gridCild=document.getElementById('grid-child')
         
         gridCild.textContent=''
         data.data.slice(0,20).forEach(n => {
-            console.log(n)
+            // console.log(n)
             
             const div=document.createElement('div')
            
@@ -82,7 +87,7 @@ const details=data=>{
     .then(phone=>displayDetail(phone))
 }
 const displayDetail=n=>{
-console.log(n)
+// console.log(n)
 const otherDetail=d=>
 {
     const other=n.data.others?.d? n.data.others.d:'' 
