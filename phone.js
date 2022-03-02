@@ -54,7 +54,7 @@ const displayCard=data=>{
            
            div.innerHTML=`
            <div class="col">
-           <div class="card rounded-3 mb-3 ">
+           <div class="card shadow-lg rounded-3 mb-3 ">
              <img src="${n.image}" class="card-img-top w-75 mx-auto my-4" alt="...">
              <div class="card-body text-center">
                <h1 class="card-title mb-3">${n.brand}</h1>
@@ -93,7 +93,7 @@ const sensors=s=>{
 }
 // big card details
 bigCard.innerHTML=`
-<div class="card flex-md-row  align-items-center justify-content-around  mx-auto my-5 w-75  ">
+<div class="card flex-md-row  align-items-center justify-content-around  mx-auto my-5 w-75 shadow-lg ">
   <div style="width:35%" class= "mx-1 d-flex flex-column justify-content-center" >
   <img src="${n.data?.image}" class="card-img-top w-75 my-4 mx-auto" alt="...">
   <h4 class="text-center">${n.data?.name}</h4>
