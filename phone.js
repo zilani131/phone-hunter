@@ -53,16 +53,18 @@ const displayCard=data=>{
             const div=document.createElement('div')
            
            div.innerHTML=`
-           <div class="col">
+           
+           <div class="card-group h-100">
            <div class="card shadow-lg rounded-3 mb-3 ">
-             <img src="${n.image}" class="card-img-top w-75 mx-auto my-4" alt="...">
+             <img style="width:65%" src="${n.image}" class="card-img-top   mx-auto my-4" alt="...">
              <div class="card-body text-center">
-               <h1 class="card-title mb-3">${n.brand}</h1>
-               <h3 class="card-text my-3">${n.phone_name}</h3>
-               <button onclick=details("${n.slug}") type="button" class="btn btn-outline-primary btn-light fw-bold border-3">Details</button>
+               <h1 class="card-title mb-3 head-style">${n.brand}</h1>
+               <h3 class="card-text my-3 head-style">${n.phone_name}</h3>
+               <button onclick=details("${n.slug}") type="button" class="btn btn-outline-success btn-light fw-bold border-3">Details</button>
              </div>
            </div>
-         </div>`
+         </div>
+         `
          gridCild.appendChild(div)
          
         });
@@ -96,17 +98,17 @@ bigCard.innerHTML=`
 <div class="card flex-md-row  align-items-center justify-content-around  mx-auto my-5 w-75 shadow-lg ">
   <div style="width:35%" class= "mx-1 d-flex flex-column justify-content-center" >
   <img src="${n.data?.image}" class="card-img-top w-75 my-4 mx-auto" alt="...">
-  <h4 class="text-center">${n.data?.name}</h4>
-  <h5 class="text-center">${n.data.releaseDate? n.data.releaseDate:'soon'}</h5>
+  <h4 class="text-center head-style">${n.data?.name}</h4>
+  <h5 class="text-center head-style">${n.data.releaseDate? n.data.releaseDate:'soon'}</h5>
   </div>
   <div class="card-body mx-4 d-flex flex-column justify-content-center">
-  <h4 class="text-center my-4 fw-bold ">${n.data.name} Specification</h4>
+  <h4 class="text-center my-4 fw-bold head-style ">${n.data.name} Specification</h4>
   <table class="table  table-striped w-100">
   
 
   <tbody>
     <tr>
-      <th colspan="2">Connectivity</th>
+      <th colspan="2" class="head-style">Connectivity</th>
     </tr>
     <tr>
     <td>WLAN:</td>
@@ -130,7 +132,7 @@ bigCard.innerHTML=`
     <td>${n.data.others?.Radio? n.data.others?.Radio:''}</td>
    </tr>
    <tr>
-   <th colspan="2">Sensors</th>
+   <th colspan="2" class="head-style">Sensors</th>
     </tr>
 
     <tr>
@@ -138,7 +140,7 @@ bigCard.innerHTML=`
     <td class="text-wrap">${sensors(n.data.mainFeatures?.sensors)}</td>
     </tr>
     <tr>
-   <th colspan="2">Display</th>
+   <th colspan="2" class="head-style">Display</th>
     </tr>
     <tr>
     <td>Display:</td>
@@ -146,14 +148,14 @@ bigCard.innerHTML=`
    </tr>
    
    <tr>
-   <th colspan="2">Performance</th>
+   <th colspan="2" class="head-style">Performance</th>
     </tr>
     <tr>
     <td>Chipset:</td>
     <td>${n.data.mainFeatures?.chipSet? n.data.mainFeatures?.chipSet:''}</td>
    </tr>
    <tr>
-   <th colspan="2">Storage</th>
+   <th colspan="2" class="head-style">Storage</th>
     </tr>
     <tr>
     <td>RAM:</td>
