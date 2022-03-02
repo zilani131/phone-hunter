@@ -1,10 +1,26 @@
+/* body */
+body{
+    background-color: #d8f3dc4b;
+}
+/* alert */
 #alert,#alert-not-found{
     display: none;
     width:50%;
-    background-color: rgba(209, 105, 105, 0.37);
+    background-color: #9e11117e;
     margin: 10px auto;
     padding: 15px 20px;
     border-radius: 10px;
     
     
+}
+/* grid container */
+#grid-container{
+    display: none;
+    
+  
+}
+/* head style */
+#head-style{
+    color: #1b4332;
+
 }

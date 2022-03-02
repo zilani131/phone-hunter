@@ -22,7 +22,7 @@ const search=()=>{
     if(searchText=="")
     {
         toggle('block','alert')
-        toggle('none','grid-child')
+        toggle('none','grid-container')
         
     }
   
@@ -30,6 +30,8 @@ const search=()=>{
         fetch(url)
         .then(res=>res.json())
         .then(data=>displayCard(data))
+        toggle('block',"grid-container")
+      
     }
     document.getElementById('search-field').value=''
 }
@@ -38,9 +40,9 @@ const displayCard=data=>{
       console.log(data)
       if(data.status==false){
         toggle('block',"alert-not-found")
-       
+        toggle('none','grid-container')
     }
-    else{
+    else{toggle('block',"grid-container")
         
         const gridCild=document.getElementById('grid-child')
         
@@ -49,14 +51,15 @@ const displayCard=data=>{
             console.log(n)
             
             const div=document.createElement('div')
+           
            div.innerHTML=`
            <div class="col">
-           <div class="card rounded-3">
+           <div class="card rounded-3 mb-3 ">
              <img src="${n.image}" class="card-img-top w-75 mx-auto my-4" alt="...">
              <div class="card-body text-center">
                <h1 class="card-title mb-3">${n.brand}</h1>
                <h3 class="card-text my-3">${n.phone_name}</h3>
-               <button onclick=details("${n.slug}") type="button" class="btn btn-outline-primary">Details</button>
+               <button onclick=details("${n.slug}") type="button" class="btn btn-outline-primary btn-light fw-bold border-3">Details</button>
              </div>
            </div>
          </div>`
@@ -88,12 +91,12 @@ const sensors=s=>{
    const sensorArray=s.map(sensor=>" "+sensor)
    return sensorArray
 }
-// big card
+// big card details
 bigCard.innerHTML=`
 <div class="card flex-md-row  align-items-center justify-content-around  mx-auto my-5 w-75  ">
   <div style="width:35%" class= "mx-1 d-flex flex-column justify-content-center" >
-  <img src="${n.data.image}" class="card-img-top w-75 my-4 mx-auto" alt="...">
-  <h4 class="text-center">${n.data.name}</h4>
+  <img src="${n.data?.image}" class="card-img-top w-75 my-4 mx-auto" alt="...">
+  <h4 class="text-center">${n.data?.name}</h4>
   <h5 class="text-center">${n.data.releaseDate? n.data.releaseDate:'soon'}</h5>
   </div>
   <div class="card-body mx-4 d-flex flex-column justify-content-center">
@@ -134,8 +137,32 @@ bigCard.innerHTML=`
     <td>Sensors:</td>
     <td class="text-wrap">${sensors(n.data.mainFeatures?.sensors)}</td>
     </tr>
-
-    
+    <tr>
+   <th colspan="2">Display</th>
+    </tr>
+    <tr>
+    <td>Display:</td>
+    <td>${n.data.mainFeatures?.displaySize }</td>
+   </tr>
+   
+   <tr>
+   <th colspan="2">Performance</th>
+    </tr>
+    <tr>
+    <td>Chipset:</td>
+    <td>${n.data.mainFeatures?.chipSet? n.data.mainFeatures?.chipSet:''}</td>
+   </tr>
+   <tr>
+   <th colspan="2">Storage</th>
+    </tr>
+    <tr>
+    <td>RAM:</td>
+    <td>${n.data.mainFeatures?.memory? n.data.mainFeatures?.memory:''}</td>
+   </tr>
+   <tr>
+    <td>ROM:</td>
+    <td>${n.data.mainFeatures?.storage? n.data.mainFeatures?.storage:''}</td>
+   </tr>
   </tbody>
   
 
