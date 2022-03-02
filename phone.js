@@ -1,39 +1,71 @@
 // big card
   const bigCard=document.getElementById('big-card')
+
+//   toggle function
+const toggle=(n,id)=>{
+    const alertBar=document.getElementById(id)
+    alertBar.style.display=n
+}
+
 // search field
+
 
 const search=()=>{
     const searchField=document.getElementById('search-field')
     const searchText=searchField.value
-  
+    toggle('none',"alert-not-found")
+    toggle('none','alert')
+   
     bigCard.textContent=''
    
     const url=`https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-    .then(res=>res.json())
-    .then(data=>displayCard(data))
+    if(searchText=="")
+    {
+        toggle('block','alert')
+        toggle('none','grid-child')
+        
+    }
+  
+    else{
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>displayCard(data))
+    }
+    document.getElementById('search-field').value=''
 }
 // display card
 const displayCard=data=>{
-    
-    const gridCild=document.getElementById('grid-child')
-    gridCild.textContent=''
-    data.data.slice(0,20).forEach(n => {
+      console.log(data)
+      if(data.status==false){
+        toggle('block',"alert-not-found")
+       
+    }
+    else{
         
-        const div=document.createElement('div')
-       div.innerHTML=`
-       <div class="col">
-       <div class="card rounded-3">
-         <img src="${n.image}" class="card-img-top w-75 mx-auto my-4" alt="...">
-         <div class="card-body text-center">
-           <h1 class="card-title mb-3">${n.brand}</h1>
-           <h3 class="card-text my-3">${n.phone_name}</h3>
-           <button onclick=details("${n.slug}") type="button" class="btn btn-outline-primary">Details</button>
-         </div>
-       </div>
-     </div>`
-     gridCild.appendChild(div)
-    });
+        const gridCild=document.getElementById('grid-child')
+        
+        gridCild.textContent=''
+        data.data.slice(0,20).forEach(n => {
+            console.log(n)
+            
+            const div=document.createElement('div')
+           div.innerHTML=`
+           <div class="col">
+           <div class="card rounded-3">
+             <img src="${n.image}" class="card-img-top w-75 mx-auto my-4" alt="...">
+             <div class="card-body text-center">
+               <h1 class="card-title mb-3">${n.brand}</h1>
+               <h3 class="card-text my-3">${n.phone_name}</h3>
+               <button onclick=details("${n.slug}") type="button" class="btn btn-outline-primary">Details</button>
+             </div>
+           </div>
+         </div>`
+         gridCild.appendChild(div)
+         
+        });
+    }
+    
+   
 
 }
 // big card details url

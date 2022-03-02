@@ -1,3 +1,10 @@
 #alert,#alert-not-found{
     display: none;
+    width:50%;
+    background-color: rgba(209, 105, 105, 0.37);
+    margin: 10px auto;
+    padding: 15px 20px;
+    border-radius: 10px;
+    
+    
 }
