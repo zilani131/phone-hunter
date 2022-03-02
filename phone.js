@@ -1,13 +1,19 @@
+// big card
+  const bigCard=document.getElementById('big-card')
 // search field
+
 const search=()=>{
     const searchField=document.getElementById('search-field')
     const searchText=searchField.value
+  
+    bigCard.textContent=''
    
     const url=`https://openapi.programming-hero.com/api/phones?search=${searchText}`
     fetch(url)
     .then(res=>res.json())
     .then(data=>displayCard(data))
 }
+// display card
 const displayCard=data=>{
     
     const gridCild=document.getElementById('grid-child')
@@ -30,7 +36,7 @@ const displayCard=data=>{
     });
 
 }
-
+// big card details url
 const details=data=>{
     
     url=`https://openapi.programming-hero.com/api/phone/${data}`
@@ -40,12 +46,68 @@ const details=data=>{
 }
 const displayDetail=n=>{
 console.log(n)
-const bigCard=document.getElementById('big-card')
+const otherDetail=d=>
+{
+    const other=n.data.others?.d? n.data.others.d:'' 
+    return other 
+}
+// sensor function
+const sensors=s=>{
+   const sensorArray=s.map(sensor=>" "+sensor)
+   return sensorArray
+}
+// big card
 bigCard.innerHTML=`
 <div class="card flex-md-row  align-items-center justify-content-around mx-auto my-5" style="width: 32rem;">
-  <img src="${n.data.image}" class="card-img-top w-75 mx-4 my-4" alt="...">
-  <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div class= "mx-4 d-flex flex-column justify-content-center" >
+  <img src="${n.data.image}" class="card-img-top w-75 my-4 mx-auto" alt="...">
+  <h4 class="text-center">${n.data.name}</h4>
+  <h5 class="text-center">${n.data.releaseDate? n.data.releaseDate:'soon'}</h5>
+  </div>
+  <div class="card-body mx-4 d-flex flex-column justify-content-center">
+  <h4 class="text-center my-4 fw-bold ">${n.data.name} Specification</h4>
+  <table class="table  table-striped w-100">
+  
+
+  <tbody>
+    <tr>
+      <th colspan="2">Connectivity</th>
+    </tr>
+    <tr>
+    <td>WLAN:</td>
+    <td>${n.data.others?.WLAN? n.data.others.WLAN:'' }</td>
+   </tr>
+    <tr>
+    <td>Blutooth:</td>
+    <td>${n.data.others?.Blutooth? n.data.others?.Blutooth:''}</td>
+   </tr>
+    <tr>
+    <td>GPS:</td>
+    <td>${n.data.others?.GPS? n.data.others?.GPS:''}</td>
+   </tr>
+    <tr>
+    <td>NFC:</td>
+    <td>${n.data.others?.NFC? n.data.others?.NFC:''  }</td>
+   </tr>
+ 
+    <tr>
+    <td>Radio:</td>
+    <td>${n.data.others?.Radio? n.data.others?.Radio:''}</td>
+   </tr>
+   <tr>
+   <th colspan="2">Sensors</th>
+    </tr>
+
+    <tr>
+    <td>Sensors:</td>
+    <td class="text-wrap">${sensors(n.data.mainFeatures.sensors)}</td>
+    </tr>
+
+    
+  </tbody>
+  
+
+</table>
   </div>
 </div>
 `
